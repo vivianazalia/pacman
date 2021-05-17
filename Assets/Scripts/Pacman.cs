@@ -9,6 +9,8 @@ public class Pacman : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D rbPacman;
 
+    private int score;
+
     private void Start()
     {
         rbPacman = GetComponent<Rigidbody2D>();
@@ -58,5 +60,15 @@ public class Pacman : MonoBehaviour
     void ResetMovementValue()
     {
         SetMovementValue(1, 0);
+    }
+
+    void SetScore(int s)
+    {
+        score += s;
+    }
+
+    int GetScore()
+    {
+        return score;
     }
 }
