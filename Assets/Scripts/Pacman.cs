@@ -26,11 +26,13 @@ public class Pacman : MonoBehaviour
         Run();
     }
 
+    //fungsi untuk mengatur movement Pacman
     void Run() 
     {
         rbPacman.MovePosition(rbPacman.position + movement * speed * Time.fixedDeltaTime);
     }
 
+    //fungsi untuk mengatur input movement Pacman
     void CheckInput() 
     {
         if (Input.GetKeyDown(KeyCode.W))
@@ -51,22 +53,26 @@ public class Pacman : MonoBehaviour
         }
     }
 
+    //untuk konfigurasi variable vector2 movement
     public void SetMovementValue(float x, float y)
     {
         movement.x = x;
         movement.y = y;
     }
 
+    //untuk reset arah movement pada awal level
     public void ResetMovementValue()
     {
         SetMovementValue(1, 0);
     }
 
+    //setter variable score
     public void SetScore(int s)
     {
         score += s;
     }
 
+    //getter variable score
     public int GetScore()
     {
         return score;

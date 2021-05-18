@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour, ISpawn
+public class Fruit : MonoBehaviour, ISpawn
 {
     private Pacman player;
 
@@ -11,6 +11,8 @@ public class Food : MonoBehaviour, ISpawn
         player = FindObjectOfType<Pacman>();
     }
 
+    //fungsi implementasi dari interface ISpawn.
+    //dipanggil saat akan mengatur posisi spawn dari object fruit.
     public void SpawnPosition()
     {
         float posX = Random.Range(-8.75f, 8.75f);
@@ -19,12 +21,19 @@ public class Food : MonoBehaviour, ISpawn
         transform.position = new Vector3(posX, posY, transform.position.z);
     }
 
+    //fungsi yang dpanggil saat akan men-destroy object fruit
+    public void DestroyFruit()
+    {
+        Destroy(gameObject);
+    }
+
+    //fungis built-in untuk mendeteksi trigger collision pada fruit
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             player.SetScore(100);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
