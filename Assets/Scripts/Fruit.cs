@@ -27,7 +27,7 @@ public class Fruit : MonoBehaviour, ISpawn
         Destroy(gameObject);
     }
 
-    //fungis built-in untuk mendeteksi trigger collision pada fruit
+    //fungsi built-in untuk mendeteksi trigger collision pada fruit
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")

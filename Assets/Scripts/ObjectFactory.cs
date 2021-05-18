@@ -23,6 +23,7 @@ public class ObjectFactory : MonoBehaviour
     #endregion
 
     [SerializeField] private Fruit fruitPrefab;
+    [SerializeField] private Food foodPrefab;
 
     public List<GameObject> objects;
 
@@ -51,6 +52,16 @@ public class ObjectFactory : MonoBehaviour
                     return fruitObj;
                 }
             }
+        } else if(name == "Food")
+        {
+            foreach(GameObject obj in objects)
+            {
+                if (obj.name == name)
+                {
+                    Food foodObj = Instantiate(obj).GetComponent<Food>();
+                    return foodObj;
+                }
+            }
         }
         //tambahkan else if disini untuk create object dengan tipe ISpawn lainnya 
 
@@ -61,9 +72,11 @@ public class ObjectFactory : MonoBehaviour
     void AddObjectToList()
     {
         objects.Add(fruitPrefab.gameObject);
+        objects.Add(foodPrefab.gameObject);
     }
 
-    //untuk menghapus atau men-destroy object fruit setelah spawn selama 3 detik
+    //untuk menghapus atau men-destroy object fruit setelah spawn selama 3 detik.
+    //mungkin fungsi ini akan dipindahkan ke class Board
     IEnumerator DestroyFruit(Fruit fruitObj)
     {
         if(fruitObj != null)
