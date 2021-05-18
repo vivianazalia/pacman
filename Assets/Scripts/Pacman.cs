@@ -57,17 +57,17 @@ public class Pacman : MonoBehaviour
         movement.y = y;
     }
 
-    void ResetMovementValue()
+    public void ResetMovementValue()
     {
         SetMovementValue(1, 0);
     }
 
-    void SetScore(int s)
+    public void SetScore(int s)
     {
         score += s;
     }
 
-    int GetScore()
+    public int GetScore()
     {
         return score;
     }

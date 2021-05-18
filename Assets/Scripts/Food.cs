@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Food : MonoBehaviour, ISpawn
 {
-    private float timeToSpawn = 10;
+    private Pacman player;
 
     void Start()
     {
-        
+        player = FindObjectOfType<Pacman>();
     }
 
     public void SpawnPosition()
@@ -16,27 +16,15 @@ public class Food : MonoBehaviour, ISpawn
         float posX = Random.Range(-8.75f, 8.75f);
         float posY = Random.Range(-3.6f, 3.6f);
 
-        transform.position = new Vector2(posX, posY);
-        gameObject.SetActive(true);
+        transform.position = new Vector3(posX, posY, transform.position.z);
     }
 
-    IEnumerator Spawn()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(timeToSpawn <= 0)
+        if(collision.gameObject.tag == "Player")
         {
-            SpawnPosition();
-            timeToSpawn = 10;
-            yield return new WaitForSeconds(3);
-            gameObject.SetActive(false);
+            player.SetScore(100);
+            Destroy(gameObject);
         }
-        else
-        {
-            timeToSpawn -= Time.deltaTime;
-        }
-    }
-
-    public void SpawnCall()
-    {
-        StartCoroutine(Spawn());
     }
 }
